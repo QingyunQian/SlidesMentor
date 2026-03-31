@@ -93,6 +93,7 @@ When code exists:
 - Mark gaps explicitly when the repo does not match the paper.
 - Produce `output/code-relevance-map.md` following `templates/code-relevance-map.md`.
 - Stop once the teaching-relevant mapping is clear; do not exhaustively read the repo.
+- Optionally pause after Stage 2 to let the user review the paper analysis and code relevance map before continuing.
 
 ### Stage 3 - Reframe for teaching
 
@@ -145,9 +146,9 @@ Check before presenting:
 - Lecture Script follows the teaching reframe rather than paper section order.
 - Audience level, notation, terminology, and pacing are consistent across all artifacts.
 - Code slide quotas pass only if they match the resolved `effective_code_mode` after any fallback downgrade:
-  - `no-code`: exactly `0` code slides
-  - `code-supporting`: exactly `1-2` code slides
-  - `code-central`: at least `3` code slides
+  - `no`: exactly `0` code slides
+  - `yes-supporting`: exactly `1-2` code slides
+  - `yes-central`: at least `3` code slides
 - No dense-but-purposeless slides.
 
 Revision loop:
@@ -155,6 +156,9 @@ Revision loop:
 - Cap revisions at 2 loops.
 - If unresolved issues remain after 2 loops, surface the remaining flags explicitly instead of silently continuing.
 
+Stage 5 output:
+- Final artifacts
+- `output/qc-report.md` with a brief QC report that records pass/fail status and any unresolved flags.
 ## Rules
 
 - One lecture, one core takeaway.
@@ -173,13 +177,13 @@ Revision loop:
 ## Resolving code handling
 
 Decision matrix:
-- If `code_preference = no`, resolve to `no-code`.
-- If `code_preference = yes-central`, resolve to `code-central`.
-- If `code_preference = yes-supporting`, resolve to `code-supporting`.
-- If `code_preference = auto-decide`, resolve only to `code-supporting` or `no-code`; never resolve `auto-decide` to `code-central`.
+- If `code_preference = no`, resolve to `no`.
+- If `code_preference = yes-central`, resolve to `yes-central`.
+- If `code_preference = yes-supporting`, resolve to `yes-supporting`.
+- If `code_preference = auto-decide`, resolve only to `yes-supporting` or `no`; never resolve `auto-decide` to `yes-central`.
 - If code is unavailable, override any preference and resolve to the paper-only fallback.
-- If code exists but is incomplete, downgrade any would-be `code-central` resolution to `code-supporting`; partial coverage never leaves `effective_code_mode` ambiguous and never justifies `code-central`.
-- If code is present but low-value for teaching clarity, prefer `no-code`.
+- If code exists but is incomplete, downgrade any would-be `yes-central` resolution to `yes-supporting`; partial coverage never leaves `effective_code_mode` ambiguous and never justifies `yes-central`.
+- If code is present but low-value for teaching clarity, prefer `no`.
 
 ## Fallback modes
 
@@ -187,7 +191,7 @@ Decision matrix:
 
 Use when `code_source` is `none`.
 
-- This fallback resolves code handling to `no-code`.
+- This fallback resolves code handling to `no`.
 - Skip Stage 2.
 - Produce all outputs without code.
 - Keep the explanation conceptual and teaching-focused.
@@ -196,7 +200,7 @@ Use when `code_source` is `none`.
 
 Use when code exists but does not fully cover the paper.
 
-- This fallback downgrades any would-be `code-central` resolution to `code-supporting`, and `effective_code_mode` must be recorded as `code-supporting`.
+- This fallback downgrades any would-be `yes-central` resolution to `yes-supporting`, and `effective_code_mode` must be recorded as `yes-supporting`.
 - Map only what exists.
 - Mark missing areas explicitly.
 - Use paper evidence where code is absent.

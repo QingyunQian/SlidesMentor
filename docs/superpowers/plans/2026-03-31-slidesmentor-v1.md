@@ -107,9 +107,9 @@ Expected: `.claude/skills/slidesmentor/templates/` exists.
 -
 
 ## Claim to Evidence Map
-| Claim | Evidence anchor | Confidence |
-| --- | --- | --- |
-|  |  |  |
+| Claim | Evidence anchor | Evidence note | Confidence |
+| --- | --- | --- | --- |
+|  |  |  |  |
 ```
 
 - [ ] **Step 5: Add the Stage 2 template**
@@ -173,7 +173,7 @@ Expected: `.claude/skills/slidesmentor/templates/` exists.
 - Duration:
 - Slide count:
 
-## Slide 1:
+## Slide 1: [Title]
 - **Purpose**:
 - **Content**:
 - **Visual**:
@@ -202,6 +202,8 @@ Recommended source package and upload order:
 Style constraints:
 - One key idea per slide
 - Emphasize intuition over formalism
+- Audience-appropriate notation/code guidance: [notation and code guidance]
+- Specific constraints from session config: [session-specific constraints]
 
 Do NOT include:
 -
@@ -294,7 +296,7 @@ Defaults:
 - `code_source`: `none`
 
 If `paper_source` is missing, stop and ask for it.
-Populate `templates/session-config.md` before continuing.
+Treat `templates/session-config.md` as a reference schema. Produce `output/session-config.md`; do not overwrite the template file itself.
 ```
 
 - [ ] **Step 4: Write the Stage 1-5 execution checklist**
