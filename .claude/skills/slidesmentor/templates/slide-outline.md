@@ -5,7 +5,7 @@
 - Duration:
 - Slide count:
 
-## Slide 1:
+## Slide 1: [Title]
 - **Purpose**:
 - **Content**:
 - **Visual**:

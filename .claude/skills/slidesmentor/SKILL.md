@@ -86,6 +86,8 @@ Skip this stage if `code_source` is `none`.
 When code exists:
 - Read the README first.
 - Read entry points before deeper files.
+- If the repo has more than 50 files, do not read everything; prioritize README -> entry scripts -> files referenced in the paper -> main method modules.
+- If the repo has more than 100 files, cap detailed inspection at 20 files; if the teaching-relevant mapping is still incomplete, switch to Partial code mode.
 - Map teaching-relevant concepts from Stage 1 to files and symbols.
 - Tag each code item as `core`, `supporting`, or `noise`.
 - Mark gaps explicitly when the repo does not match the paper.
@@ -142,10 +144,10 @@ Check before presenting:
 - NotebookLM prompt is specific about the paper name, method, and audience.
 - Lecture Script follows the teaching reframe rather than paper section order.
 - Audience level, notation, terminology, and pacing are consistent across all artifacts.
-- Code slide quotas match the resolved `effective_code_mode` after any fallback downgrade:
-  - `no-code`: zero code-centric slides
-  - `code-supporting`: limited code slides used only to reinforce key concepts
-  - `code-central`: code is integral to the teaching path, but only when explicitly resolved to this mode and not downgraded by partial code coverage
+- Code slide quotas pass only if they match the resolved `effective_code_mode` after any fallback downgrade:
+  - `no-code`: exactly `0` code slides
+  - `code-supporting`: exactly `1-2` code slides
+  - `code-central`: at least `3` code slides
 - No dense-but-purposeless slides.
 
 Revision loop:
