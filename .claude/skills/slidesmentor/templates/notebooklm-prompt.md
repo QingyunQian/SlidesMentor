@@ -19,6 +19,8 @@ Recommended source package and upload order:
 Style constraints:
 - One key idea per slide
 - Emphasize intuition over formalism
+- Audience-appropriate notation/code guidance: [notation and code guidance]
+- Specific constraints from session config: [session-specific constraints]
 
 Do NOT include:
 -

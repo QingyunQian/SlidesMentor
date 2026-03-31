@@ -27,6 +27,6 @@
 -
 
 ## Claim to Evidence Map
-| Claim | Evidence anchor | Confidence |
-| --- | --- | --- |
-|  |  |  |
+| Claim | Evidence anchor | Evidence note | Confidence |
+| --- | --- | --- | --- |
+|  |  |  |  |
