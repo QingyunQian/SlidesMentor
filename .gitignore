@@ -204,6 +204,21 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# Local SlidesMentor run artifacts
+output/
+
+# Local Claude settings
+.claude/settings.local.json
+
+# Internal design and planning docs
+docs/superpowers/
+
+# Local Claude workspace files
+.claude/
+
+# Internal agent instructions
+AGENTS.md
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

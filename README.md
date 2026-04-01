@@ -1,67 +1,76 @@
 # SlidesMentor
 
-SlidesMentor is a teaching-oriented paper-to-slides skill package focused on producing better NotebookLM Custom Presentations prompts.
+SlidesMentor is an open skill for turning a research paper, with or without code, into teaching-oriented artifacts and a stronger NotebookLM presentation prompt.
 
-## Why SlidesMentor
+It is built for the common failure case where raw papers produce summary-style slides that are hard to teach from.
 
-Research artifacts are rarely teachable in raw form.
-Papers are written for publication. Code is written for execution. Feeding them directly into a slide generator often produces summary-style decks that are dense, weakly structured, and hard to teach from.
+## What it does
 
-SlidesMentor helps extract the actual teaching story, turn it into teaching artifacts, and hand NotebookLM a shorter, higher-signal prompt contract.
+- extracts one teachable story from a paper
+- reframes the paper into lecture structure instead of paper section order
+- produces a teaching summary, slide outline, lecture script, and NotebookLM-ready prompt
+- separates local artifact quality from actual deck quality after NotebookLM generation
 
-## What v2 focuses on
+## What it does not do
 
-- **Extract** — identify the core teaching story across the paper and codebase
-- **Reframe** — convert publication-style exposition into teaching-oriented explanation
-- **Prompt** — generate a short NotebookLM prompt with dynamic required coverage and explicit visual style
-- **Review** — distinguish local artifact QC from downstream review of the actual generated deck
-- **Package** — ship a canonical package layout instead of only a Claude-local skill folder
+- it does not automate NotebookLM
+- it does not generate `.pptx` or `.pdf`
+- it does not guarantee that a good prompt will always produce a good final deck
 
-## Current source of truth
+## Install
 
-- `docs/superpowers/specs/2026-04-01-slidesmentor-v2-design.md` — v2 design spec
-- `docs/superpowers/plans/2026-04-01-slidesmentor-v2.md` — v2 implementation plan
-- `slidesmentor-skill-package/` — canonical package source
-- `.claude/skills/slidesmentor/SKILL.md` — Claude-oriented adapter copy
+### Claude Code
 
-The older v1 spec and plan remain in the repo as historical reference.
+```bash
+bash .claude-plugin/install.sh
+```
 
-## Repository layout
+### Codex
 
-- `slidesmentor-skill-package/` — canonical package root
-- `slidesmentor-skill-package/skills/slidesmentor/SKILL.md` — canonical skill source
-- `slidesmentor-skill-package/templates/` — canonical templates
-- `slidesmentor-skill-package/.claude-plugin/` — Claude adapter docs
-- `slidesmentor-skill-package/.codex-plugin/` — Codex adapter docs
-- `.claude/skills/slidesmentor/` — repo-local Claude-oriented distribution target
-- `docs/superpowers/specs/` — design specs
-- `docs/superpowers/plans/` — implementation plans
+```bash
+bash .codex-plugin/install.sh
+```
 
-## Validation model
+## Quick start
 
-SlidesMentor now separates two kinds of validation:
+Ask your coding agent for something like:
 
-1. **Artifact QC** — are the local markdown artifacts on contract?
-2. **Deck review** — after NotebookLM generates slides, do the actual slides match the teaching goal?
+```text
+Teach this paper for a grad-intro audience and produce a NotebookLM-ready slide prompt.
+Paper: <paper path or URL>
+Code: <repo path or none>
+```
 
-Artifact QC alone does not prove final deck quality.
+SlidesMentor will write local run artifacts to `output/`.
 
-## How to use
+## Outputs
 
-Use SlidesMentor when you want to turn a paper, optionally with its codebase, into teaching-oriented material such as:
-- a teaching summary
-- a slide outline
-- a NotebookLM Custom Presentations prompt
-- a lecture script
+- `teaching-summary.md`
+- `slide-outline.md`
+- `notebooklm-prompt.md`
+- `lecture-script.md`
+- `qc-report.md`
 
-Typical triggers include:
-- "teach this paper"
-- "make slides from this paper"
-- "prepare a NotebookLM prompt for this paper"
+Curated examples live in [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples). Local run output is intentionally not versioned.
 
-## Roadmap
+## Repository guide
 
-- validate the v2 prompt contract on real NotebookLM generations
-- refine prompt constraints based on observed deck failures
-- improve platform adapters and installation story
-- explore future automation only after the prompt and review loop are stable
+- [slidesmentor-skill-package/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package) - canonical skill package
+- [.claude-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.claude-plugin) - root Claude install entry
+- [.codex-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.codex-plugin) - root Codex plugin entry
+- [slidesmentor-skill-package/skills/slidesmentor/SKILL.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/skills/slidesmentor/SKILL.md) - canonical skill definition
+- [slidesmentor-skill-package/examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/examples) - contract fixtures and package examples
+- [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples) - user-facing sample outputs
+
+## Current status
+
+SlidesMentor is usable now, but still being tuned against real NotebookLM generations.
+
+The current emphasis is:
+- improving prompt quality for NotebookLM Custom Presentations
+- keeping the skill installable across clients
+- validating generated decks with a downstream review loop instead of over-claiming from local checks
+
+## License
+
+[MIT](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/LICENSE)
