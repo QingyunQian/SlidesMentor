@@ -1,21 +1,43 @@
-# SlidesMentor
+<p align="center">
+  <img src="logo.png" alt="SlidesMentor logo" width="220" />
+</p>
 
-SlidesMentor is an open skill for turning a research paper, with or without code, into teaching-oriented artifacts and a stronger NotebookLM presentation prompt.
+<h1 align="center">SlidesMentor</h1>
 
-It is built for the common failure case where raw papers produce summary-style slides that are hard to teach from.
+<p align="center">
+  Turn research papers into teachable slide artifacts and stronger NotebookLM prompts.
+</p>
 
-## What it does
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/status-experimental-f59e0b" alt="Experimental Status">
+  <img src="https://img.shields.io/badge/platform-Claude_Code-111827" alt="Claude Code">
+  <img src="https://img.shields.io/badge/platform-Codex-2563eb" alt="Codex">
+  <img src="https://img.shields.io/badge/output-NotebookLM_Prompt-0f766e" alt="NotebookLM Prompt">
+</p>
 
-- extracts one teachable story from a paper
-- reframes the paper into lecture structure instead of paper section order
-- produces a teaching summary, slide outline, lecture script, and NotebookLM-ready prompt
-- separates local artifact quality from actual deck quality after NotebookLM generation
+SlidesMentor is an open skill for a specific workflow: take a paper, find the one story worth teaching, and turn it into artifacts that are actually useful for lecture prep.
 
-## What it does not do
+The main target is not generic summarization. The main target is better handoff into slide-making workflows, especially NotebookLM Custom Presentations.
 
-- it does not automate NotebookLM
-- it does not generate `.pptx` or `.pdf`
-- it does not guarantee that a good prompt will always produce a good final deck
+## Why this exists
+
+Raw papers are optimized for publication, not teaching. If you paste a paper directly into a slide generator, the result is often predictable:
+
+- too close to the paper section order
+- too much abstract-summary language
+- weak intuition
+- poor slide-level structure
+
+SlidesMentor tries to fix that before the slides are generated.
+
+## What you get
+
+- a `teaching-summary.md` with the core takeaway and explicit teach/skip decisions
+- a `slide-outline.md` with one pedagogical purpose per slide
+- a `lecture-script.md` written in presentation order instead of paper order
+- a `notebooklm-prompt.md` that is short, specific, and slide-oriented
+- a `qc-report.md` that checks local artifact quality without over-claiming final deck quality
 
 ## Install
 
@@ -33,7 +55,7 @@ bash .codex-plugin/install.sh
 
 ## Quick start
 
-Ask your coding agent for something like:
+Ask your agent for a task like:
 
 ```text
 Teach this paper for a grad-intro audience and produce a NotebookLM-ready slide prompt.
@@ -41,35 +63,145 @@ Paper: <paper path or URL>
 Code: <repo path or none>
 ```
 
-SlidesMentor will write local run artifacts to `output/`.
+SlidesMentor writes local run artifacts to `output/`.
 
-## Outputs
+## Inputs
 
-- `teaching-summary.md`
-- `slide-outline.md`
-- `notebooklm-prompt.md`
-- `lecture-script.md`
-- `qc-report.md`
+SlidesMentor expects a paper plus a small set of session parameters.
 
-Curated examples live in [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples). Local run output is intentionally not versioned.
+Required:
 
-## Repository guide
+- `Paper`: PDF path, paper URL, or pasted text
 
-- [slidesmentor-skill-package/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package) - canonical skill package
-- [.claude-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.claude-plugin) - root Claude install entry
-- [.codex-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.codex-plugin) - root Codex plugin entry
+Common optional inputs:
+
+- `Code`: repo path, repo URL, or `none`
+- `Audience`: `undergrad`, `grad-intro`, `grad-advanced`, or `seminar-mixed`
+- `Scenario`: `course lecture`, `group meeting`, `conference tutorial`, or `self-study`
+- `Duration`: for example `20 min`
+- `Code preference`: `yes-central`, `yes-supporting`, `no`, or `auto-decide`
+- `Slide count`: only if you want to override the default duration-based estimate
+
+If you omit most of these, SlidesMentor can still run with defaults. The only true must-have is the paper source.
+
+## How to ask
+
+You do not need a command-line interface or a special form. Just ask your agent in plain language and include the inputs inline.
+
+Minimal example:
+
+```text
+Use SlidesMentor for this paper.
+
+Paper: /path/to/paper.pdf
+```
+
+Recommended example:
+
+```text
+Use SlidesMentor for this paper.
+
+Paper: /path/to/paper.pdf
+Code: none
+Audience: grad-intro
+Scenario: group meeting
+Duration: 20 min
+Code preference: auto-decide
+
+Please produce:
+- teaching summary
+- slide outline
+- notebooklm prompt
+- lecture script
+- qc report
+```
+
+Example with code:
+
+```text
+Use SlidesMentor for this paper.
+
+Paper: https://arxiv.org/abs/xxxx.xxxxx
+Code: /path/to/repo
+Audience: seminar-mixed
+Scenario: course lecture
+Duration: 30 min
+Code preference: yes-supporting
+```
+
+## Workflow
+
+SlidesMentor produces both intermediate artifacts and final outputs.
+
+Intermediate artifacts:
+
+- `output/session-config.md`
+- `output/paper-analysis-brief.md`
+- `output/code-relevance-map.md` when code is available and relevant
+- `output/teaching-reframe.md`
+
+Final outputs:
+
+- `output/teaching-summary.md`
+- `output/slide-outline.md`
+- `output/notebooklm-prompt.md`
+- `output/lecture-script.md`
+- `output/qc-report.md`
+
+The intermediate files exist so you can inspect how the teaching story was derived before relying on the final prompt or outline.
+
+## What `qc-report.md` means
+
+`qc-report.md` checks the quality of the local artifacts generated by SlidesMentor. It does not directly score the final slides produced by NotebookLM.
+
+It is meant to answer questions like:
+
+- Is the teaching summary actually a teaching summary, or just a rewritten abstract?
+- Does each slide have one clear pedagogical purpose?
+- Is the NotebookLM prompt short, specific, and paper-aware?
+- Does the lecture script follow the teaching story instead of the paper section order?
+
+It is not meant to answer:
+
+- Are the final NotebookLM slides visually strong?
+- Did NotebookLM drift into abstract-summary slides anyway?
+- Is the final deck actually good enough to present?
+
+For that second layer, use the downstream rubric in [slidesmentor-skill-package/docs/deck-review-rubric.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/docs/deck-review-rubric.md) after NotebookLM generates a deck.
+
+## Example outputs
+
+Public sample artifacts are in [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples):
+
+- [notebooklm-prompt.example.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples/notebooklm-prompt.example.md)
+- [qc-report.example.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples/qc-report.example.md)
+
+## Repository layout
+
+- [.claude-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.claude-plugin) - Claude install entry
+- [.codex-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.codex-plugin) - Codex install entry
+- [slidesmentor-skill-package/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package) - canonical package source
 - [slidesmentor-skill-package/skills/slidesmentor/SKILL.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/skills/slidesmentor/SKILL.md) - canonical skill definition
-- [slidesmentor-skill-package/examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/examples) - contract fixtures and package examples
-- [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples) - user-facing sample outputs
+- [slidesmentor-skill-package/docs/deck-review-rubric.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/docs/deck-review-rubric.md) - downstream deck review rubric
 
-## Current status
+## Scope
 
-SlidesMentor is usable now, but still being tuned against real NotebookLM generations.
+SlidesMentor does:
 
-The current emphasis is:
-- improving prompt quality for NotebookLM Custom Presentations
-- keeping the skill installable across clients
-- validating generated decks with a downstream review loop instead of over-claiming from local checks
+- extract a teaching story from a paper and optional codebase
+- reorganize content for teaching rather than publication
+- generate markdown artifacts for lecture prep and NotebookLM prompting
+- separate artifact QC from downstream review of generated slides
+
+SlidesMentor does not:
+
+- automate NotebookLM
+- generate `.pptx` or `.pdf`
+- guarantee that a good prompt always yields a good deck
+
+## Project status
+
+SlidesMentor is usable now, but still being tuned against real NotebookLM generations. The current focus is prompt quality, clearer installation, and stronger review of downstream slide quality.
 
 ## License
 
