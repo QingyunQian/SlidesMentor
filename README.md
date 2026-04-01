@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="logo.png" alt="SlidesMentor logo" width="220" />
+  <img src="logo.png" alt="SlidesMentor logo" width="300" />
 </p>
 
 <h1 align="center">SlidesMentor</h1>
 
 <p align="center">
-  Turn research papers into teachable slide artifacts and stronger NotebookLM prompts.
+  <strong>Turn research papers into teachable slide artifacts and stronger NotebookLM prompts.</strong>
 </p>
 
 <p align="center">
@@ -14,6 +14,10 @@
   <img src="https://img.shields.io/badge/platform-Claude_Code-111827" alt="Claude Code">
   <img src="https://img.shields.io/badge/platform-Codex-2563eb" alt="Codex">
   <img src="https://img.shields.io/badge/output-NotebookLM_Prompt-0f766e" alt="NotebookLM Prompt">
+</p>
+
+<p align="center">
+  SlidesMentor helps an agent turn a paper and optional codebase into a teaching summary, slide outline, lecture script, and a NotebookLM-ready prompt.
 </p>
 
 SlidesMentor is an open skill for a specific workflow: take a paper, find the one story worth teaching, and turn it into artifacts that are actually useful for lecture prep.
