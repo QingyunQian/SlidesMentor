@@ -4,11 +4,12 @@ This fixture captures the expected v2 NotebookLM prompt shape.
 
 Required elements:
 - short task sentence
-- audience line only when it materially helps
-- duration line only when it materially helps
+- `Teaching thesis:` as a one-sentence takeaway anchor
 - short teaching story block
-- dynamic `Required coverage:` section with 8-12 default items and flexibility beyond that when `target_slide_count` warrants it
+- `Narrative priorities:` that steer what gets foregrounded, where to spend time, and how cautious the tone should be
+- dynamic `Required coverage:` section with 6-10 default items and flexibility beyond that only when `target_slide_count` warrants it
+- `Evidence to show:` with specific paper figures, diagnostics, or result types
+- `Image handling:` with figure recreation and explanation rules
 - visual style bullets
-- short `Do NOT include:` block
 
-This exists to make the old verbose template clearly fail comparison against the v2 contract.
+This exists because NotebookLM already has access to the paper and UI-level controls. The prompt should therefore emphasize teaching decisions, evidence priorities, image usage, and story control rather than generic summary instructions.

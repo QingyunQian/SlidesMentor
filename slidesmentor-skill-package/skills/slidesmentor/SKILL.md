@@ -109,16 +109,23 @@ Write these outputs under `output/`:
 
 The prompt for NotebookLM Custom Presentations must be short and high-signal.
 
+Assume NotebookLM already has the paper as a source and already exposes UI controls for language and presentation length. The prompt should therefore control teaching decisions and evidence usage, not repeat generic paper summary boilerplate or UI-level settings.
+
 Use this shape:
 - task sentence
-- optional short `Audience:` line
-- optional short `Duration:` line
-- `Build the deck around this teaching story:`
-- short narrative (3-5 sentences)
+- `Teaching thesis:`
+- one-sentence takeaway anchor
+- `Build the deck around this story:`
+- short narrative (3-4 sentences)
+- `Narrative priorities:`
+- 3-5 bullets that specify what to foreground, where to spend time, what to treat as the key obstacle or method, and what tone of confidence to keep
 - `Required coverage:`
-- dynamic paper-specific slide topics, usually 8-12 items but allowed to scale with `target_slide_count`
+- dynamic paper-specific slide topics, usually 6-10 items and only larger when `target_slide_count` clearly requires it
+- `Evidence to show:`
+- 2-4 specific figures, diagnostics, tables, or result types from the paper that should anchor the deck
+- `Image handling:`
+- 3-4 bullets specifying how important paper figures should be recreated and explained
 - `Visual style:` bullets
-- `Do NOT include:` with only 2-4 short high-value guardrails
 
 Required visual style bullets:
 - white background
@@ -126,12 +133,17 @@ Required visual style bullets:
 - colorful figures and diagrams where helpful
 - clean academic presentation style
 - one key idea per slide
+- use paper figures or paper-faithful redraws when possible
+- prioritize image clarity over ornamental layout
 
-Default negative constraints should stay short, for example:
-- no long paragraphs
-- do not restate the abstract as slides
-- no more than one core idea per slide
-- avoid dense equations unless essential
+Prompt-writing rules:
+- do not use a `Do NOT include:` block unless the user explicitly asks for negative prompt wording
+- do not spend prompt budget on generic background that NotebookLM can infer from the paper
+- do specify which evidence should be shown, because that is harder for NotebookLM to infer reliably
+- do tell NotebookLM to explain what each important figure proves, not just to place it on the slide
+- do require high-quality, paper-faithful figure recreation when the original figure quality is not presentation-ready
+- do specify the intended confidence level when the paper is proof-of-principle or otherwise limited
+- do compress the prompt until removing any more text would weaken story control
 
 ## Stage 5 - Artifact QC
 
@@ -139,12 +151,14 @@ Check before presenting local outputs:
 - teaching summary is not a rewritten abstract
 - every slide has exactly one pedagogical purpose
 - NotebookLM prompt is short
-- NotebookLM prompt contains a concrete teaching story
+- NotebookLM prompt contains a concrete teaching thesis and teaching story
+- NotebookLM prompt contains narrative priorities rather than generic summary instructions
 - `Required coverage` is paper-specific and count is:
-  - 8-12 when `target_slide_count` is 10-16
-  - otherwise within +/-30% of `target_slide_count`, clamped to 6-16
+  - 6-10 when `target_slide_count` is 10-16
+  - otherwise within +/-30% of `target_slide_count`, clamped to 5-12
+- `Evidence to show` names specific paper figures, diagnostics, tables, or result types
+- `Image handling` explicitly requires faithful recreation and explanation of important figures
 - NotebookLM prompt contains the required visual style bullets
-- NotebookLM prompt contains only a very short negative-constraint block
 
 Write `output/qc-report.md`.
 
@@ -156,6 +170,8 @@ Review for:
 - story alignment
 - coverage alignment
 - no drift into abstract-summary deck structure
+- deck spends little time on generic background unless the audience truly needs it
+- paper claims are stated with the right level of caution
 - white-background academic styling
 - low text density where possible
 - effective use of figures and diagrams
