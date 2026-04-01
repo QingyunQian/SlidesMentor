@@ -112,11 +112,8 @@ The prompt for NotebookLM Custom Presentations must be short and high-signal.
 Assume NotebookLM already has the paper as a source and already exposes UI controls for language and presentation length. The prompt should therefore control teaching decisions and evidence usage, not repeat generic paper summary boilerplate or UI-level settings.
 
 Use this shape:
-- task sentence
-- `Teaching thesis:`
-- one-sentence takeaway anchor
 - `Build the deck around this story:`
-- short narrative (3-4 sentences)
+- short narrative (3-5 sentences) that opens directly with the core teaching claim
 - `Narrative priorities:`
 - 3-5 bullets that specify what to foreground, where to spend time, what to treat as the key obstacle or method, and what tone of confidence to keep
 - `Required coverage:`
@@ -151,7 +148,7 @@ Check before presenting local outputs:
 - teaching summary is not a rewritten abstract
 - every slide has exactly one pedagogical purpose
 - NotebookLM prompt is short
-- NotebookLM prompt contains a concrete teaching thesis and teaching story
+- NotebookLM prompt contains a concrete teaching story with a clear core claim
 - NotebookLM prompt contains narrative priorities rather than generic summary instructions
 - `Required coverage` is paper-specific and count is:
   - 6-10 when `target_slide_count` is 10-16

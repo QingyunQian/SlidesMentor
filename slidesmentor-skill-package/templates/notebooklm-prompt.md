@@ -2,13 +2,8 @@
 
 ## Prompt
 
-Create a teaching-oriented slide deck for this paper.
-
-Teaching thesis:
-[One sentence stating the main idea the audience should leave with]
-
 Build the deck around this story:
-[3-4 sentence teaching narrative]
+[3-5 sentence teaching narrative starting directly from the core teaching claim]
 
 Narrative priorities:
 

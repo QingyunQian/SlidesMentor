@@ -3,9 +3,7 @@
 This fixture captures the expected v2 NotebookLM prompt shape.
 
 Required elements:
-- short task sentence
-- `Teaching thesis:` as a one-sentence takeaway anchor
-- short teaching story block
+- short teaching story block that opens directly with the core claim
 - `Narrative priorities:` that steer what gets foregrounded, where to spend time, and how cautious the tone should be
 - dynamic `Required coverage:` section with 6-10 default items and flexibility beyond that only when `target_slide_count` warrants it
 - `Evidence to show:` with specific paper figures, diagnostics, or result types
