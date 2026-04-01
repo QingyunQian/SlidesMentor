@@ -1,9 +1,29 @@
-# Codex adapter
+# Codex Adapter
 
-This directory exists to adapt the canonical SlidesMentor package into Codex-oriented layouts.
+This adapter syncs canonical SlidesMentor files into a Codex skill layout.
 
 Canonical source:
 - `../skills/slidesmentor/SKILL.md`
-- `../templates/`
+- `../templates/*.md`
 
-Adapter behavior should preserve the canonical prompt contract rather than rewording it per client.
+Default target:
+- `${CODEX_HOME:-$HOME/.codex}/skills/slidesmentor/`
+
+## Files
+
+- `adapter-manifest.md` - mapping and sync contract
+- `install.sh` - install/sync script
+
+## Usage
+
+Install to the default Codex skills directory:
+
+```bash
+bash slidesmentor-skill-package/.codex-plugin/install.sh
+```
+
+Install to a custom path:
+
+```bash
+bash slidesmentor-skill-package/.codex-plugin/install.sh /custom/codex/skills/slidesmentor
+```

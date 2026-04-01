@@ -1,0 +1,38 @@
+{
+  "name": "slidesmentor",
+  "version": "0.2.0",
+  "description": "Turn a research paper into teaching artifacts and a stronger NotebookLM slide prompt.",
+  "author": {
+    "name": "Qingyun Qian",
+    "url": "https://github.com/QingyunQian"
+  },
+  "homepage": "https://github.com/QingyunQian/SlidesMentor",
+  "repository": "https://github.com/QingyunQian/SlidesMentor",
+  "license": "MIT",
+  "keywords": [
+    "skill",
+    "research-paper",
+    "slides",
+    "notebooklm",
+    "teaching"
+  ],
+  "skills": "./slidesmentor-skill-package/skills/",
+  "interface": {
+    "displayName": "SlidesMentor",
+    "shortDescription": "Turn papers into teachable slide artifacts",
+    "longDescription": "Extract a teaching story from a paper, generate lecture-facing artifacts, and produce a stronger NotebookLM presentation prompt.",
+    "developerName": "Qingyun Qian",
+    "category": "Productivity",
+    "capabilities": [
+      "Write",
+      "Research"
+    ],
+    "websiteURL": "https://github.com/QingyunQian/SlidesMentor",
+    "defaultPrompt": [
+      "Teach this paper and make a NotebookLM prompt.",
+      "Turn this paper into a slide outline for grad students.",
+      "Review this paper's code and build a lecture story."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

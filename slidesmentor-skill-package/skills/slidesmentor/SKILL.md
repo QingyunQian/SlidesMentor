@@ -36,6 +36,18 @@ Rules:
 - Do not make language control the responsibility of this skill.
 - Do not make NotebookLM UI settings the center of the prompt contract.
 
+Normalization contract:
+- write `output/session-config.md` before Stage 1.
+- normalize `talk_duration_minutes` from `talk_duration_raw`; if parsing fails, use `20`.
+- normalize `target_slide_count` in this order:
+  - use `slide_count_raw` if explicit and parseable;
+  - else compute `round(talk_duration_minutes / 1.5)`.
+- clamp `target_slide_count` to `[8, 30]`.
+- normalize code mode:
+  - if `code_source` is `none`, force `code_preference: no` and `effective_code_mode: paper-only`;
+  - if code exists and `code_preference` is explicit, set `effective_code_mode` to that value;
+  - if code exists and `code_preference` is `auto-decide`, set `effective_code_mode: auto-pending` and resolve in Stage 2.
+
 ## Stage 1 - Understand the paper
 
 Read the paper and identify:
@@ -63,6 +75,10 @@ When code exists:
 - stop once the teaching-relevant mapping is clear
 
 Produce `output/code-relevance-map.md`.
+
+Mode resolution:
+- if `effective_code_mode` is `auto-pending`, choose `yes-supporting` only when code makes method intuition clearer; otherwise choose `no`.
+- if fewer than half of Stage 1 teaching-relevant concepts can be mapped to code, mark missing concepts as `[not in repo]` and downgrade to partial coverage behavior.
 
 ## Stage 3 - Reframe for teaching
 
@@ -124,7 +140,9 @@ Check before presenting local outputs:
 - every slide has exactly one pedagogical purpose
 - NotebookLM prompt is short
 - NotebookLM prompt contains a concrete teaching story
-- `Required coverage` is paper-specific and usually 8-12 items unless scaled by `target_slide_count`
+- `Required coverage` is paper-specific and count is:
+  - 8-12 when `target_slide_count` is 10-16
+  - otherwise within +/-30% of `target_slide_count`, clamped to 6-16
 - NotebookLM prompt contains the required visual style bullets
 - NotebookLM prompt contains only a very short negative-constraint block
 

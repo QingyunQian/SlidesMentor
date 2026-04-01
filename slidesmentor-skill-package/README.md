@@ -1,42 +1,32 @@
 # SlidesMentor Skill Package
 
-SlidesMentor is a teaching-oriented paper-to-slides skill package focused on producing stronger NotebookLM Custom Presentations prompts.
+This directory is the canonical source for SlidesMentor.
 
-## What this package contains
+If you only want to use the skill, start from the root [README.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/README.md). This package README is mainly for contributors and maintainers.
 
-- `skills/slidesmentor/SKILL.md` — canonical SlidesMentor skill source
-- `templates/` — canonical markdown templates
-- `.claude-plugin/` — Claude-oriented adapter files
-- `.codex-plugin/` — Codex-oriented adapter files
-- `docs/` — supporting docs, including downstream deck review guidance
-- `examples/` — example prompt artifacts and contract fixtures
+## Contents
 
-## Design goals
+- [skills/slidesmentor/SKILL.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/skills/slidesmentor/SKILL.md) - canonical skill source
+- [templates/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/templates) - canonical intermediate and final artifact templates
+- [.claude-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/.claude-plugin) - Claude adapter files
+- [.codex-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/.codex-plugin) - Codex adapter files
+- [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/examples) - package fixtures
+- [docs/deck-review-rubric.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/docs/deck-review-rubric.md) - downstream deck review rubric
 
-SlidesMentor v2 focuses on:
-- extracting a teaching story from a paper,
-- generating a short, high-signal NotebookLM prompt,
-- preserving explicit visual-style constraints,
-- and separating local artifact QC from actual NotebookLM deck review.
-
-## Source of truth
-
-This package is the canonical source for SlidesMentor v2.
-
-Repo-local layouts such as `.claude/skills/slidesmentor/` are distribution targets or adapters, not the conceptual source of truth.
-
-## Platform adapters
+## Adapter install
 
 ### Claude Code
-Use the files in `.claude-plugin/` to mirror or install the canonical skill into a Claude-compatible layout.
+
+```bash
+bash slidesmentor-skill-package/.claude-plugin/install.sh
+```
 
 ### Codex
-Use the files in `.codex-plugin/` to mirror or install the canonical skill into a Codex-compatible layout.
 
-## Validation model
+```bash
+bash slidesmentor-skill-package/.codex-plugin/install.sh
+```
 
-SlidesMentor validates two different things:
-1. **Artifact QC** — are the local markdown outputs coherent and on-contract?
-2. **Deck review** — after NotebookLM generates slides, do the actual slides match the teaching goal?
+## Maintainer note
 
-Artifact QC alone does not prove deck quality.
+Keep canonical content here first, then sync local installation targets from this package. Do not introduce a second source of truth.
