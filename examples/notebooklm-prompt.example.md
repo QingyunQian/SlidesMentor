@@ -22,13 +22,10 @@ Required coverage:
 3. What ergotropy means physically as extractable work
 4. The central hypothesis: low entanglement supports higher ergotropy
 5. The PXP model as the paper's testbed
-6. The eigenstate crossover from scar regime to thermal regime
-7. The entanglement-ergotropy anti-correlation as the main conceptual result
-8. The supporting multipartite entanglement evidence
-9. The coherent-rotation charging and extraction protocol
-10. Why the dynamical result matters for quantum battery intuition
-11. The main takeaway for quantum thermodynamics and battery design
-12. The paper's key limitation or open question
+6. The eigenstate crossover and entanglement-ergotropy anti-correlation as the main conceptual result
+7. The coherent-rotation charging and extraction protocol
+8. Why the dynamical result matters for quantum battery intuition
+9. The paper's key limitation or open question
 
 Evidence to show:
 

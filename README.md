@@ -45,16 +45,42 @@ SlidesMentor tries to fix that before the slides are generated.
 
 ## Install
 
+Both install scripts sync the canonical package from `slidesmentor-skill-package/` into a platform-specific skill directory.
+
 ### Claude Code
 
 ```bash
 bash .claude-plugin/install.sh
 ```
 
+Default target: `.claude/skills/slidesmentor/` inside this repository.
+
+This keeps the skill local to the project by default. To install elsewhere:
+
+```bash
+bash .claude-plugin/install.sh /path/to/.claude/skills/slidesmentor
+```
+
 ### Codex
 
 ```bash
 bash .codex-plugin/install.sh
+```
+
+Default target: `${CODEX_HOME:-$HOME/.codex}/skills/slidesmentor/` in your user home directory.
+
+To install elsewhere:
+
+```bash
+bash .codex-plugin/install.sh /custom/codex/skills/slidesmentor
+```
+
+### Maintainer sync check
+
+If you edit canonical content under `slidesmentor-skill-package/`, keep the root `skills/` mirror in sync:
+
+```bash
+bash scripts/check-sync.sh
 ```
 
 ## Quick start

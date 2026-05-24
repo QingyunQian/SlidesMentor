@@ -1,0 +1,16 @@
+name: check-sync
+
+on:
+  push:
+    branches:
+      - main
+      - 'codex/**'
+  pull_request:
+
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify canonical package and mirror stay in sync
+        run: bash scripts/check-sync.sh

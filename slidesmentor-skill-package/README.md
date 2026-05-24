@@ -30,3 +30,9 @@ bash slidesmentor-skill-package/.codex-plugin/install.sh
 ## Maintainer note
 
 Keep canonical content here first, then sync local installation targets from this package. The root `skills/` directory is a Codex plugin discovery mirror and should be kept in sync with this package.
+
+Verify sync from repository root:
+
+```bash
+bash scripts/check-sync.sh
+```
