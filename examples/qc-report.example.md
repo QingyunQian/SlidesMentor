@@ -11,9 +11,11 @@
 - Every slide in the outline has exactly one pedagogical purpose: PASS
 - NotebookLM prompt is short and high-signal: PASS
 - NotebookLM prompt contains a concrete teaching story: PASS
+- NotebookLM prompt contains narrative priorities rather than generic summary instructions: PASS
 - Required coverage is paper-specific and appropriately sized for the deck: PASS
-- Visual style explicitly requires white background, black text, and colorful figures/diagrams: PASS
-- Negative constraints remain short and high-value: PASS
+- Evidence to show names concrete figures, diagnostics, or result types from the paper: PASS
+- Image handling requires faithful recreation and explanation of important figures: PASS
+- Visual style includes all required SlidesMentor bullets: PASS
 - Lecture Script follows the teaching reframe rather than paper section order: PASS
 
 ## Notes

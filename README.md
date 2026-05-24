@@ -171,22 +171,23 @@ It is not meant to answer:
 - Did NotebookLM drift into abstract-summary slides anyway?
 - Is the final deck actually good enough to present?
 
-For that second layer, use the downstream rubric in [slidesmentor-skill-package/docs/deck-review-rubric.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/docs/deck-review-rubric.md) after NotebookLM generates a deck.
+For that second layer, use the downstream rubric in [slidesmentor-skill-package/docs/deck-review-rubric.md](slidesmentor-skill-package/docs/deck-review-rubric.md) after NotebookLM generates a deck.
 
 ## Example outputs
 
-Public sample artifacts are in [examples/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples):
+Public sample artifacts are in [examples/](examples):
 
-- [notebooklm-prompt.example.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples/notebooklm-prompt.example.md)
-- [qc-report.example.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/examples/qc-report.example.md)
+- [notebooklm-prompt.example.md](examples/notebooklm-prompt.example.md)
+- [qc-report.example.md](examples/qc-report.example.md)
 
 ## Repository layout
 
-- [.claude-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.claude-plugin) - Claude install entry
-- [.codex-plugin/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.codex-plugin) - Codex install entry
-- [slidesmentor-skill-package/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package) - canonical package source
-- [slidesmentor-skill-package/skills/slidesmentor/SKILL.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/skills/slidesmentor/SKILL.md) - canonical skill definition
-- [slidesmentor-skill-package/docs/deck-review-rubric.md](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package/docs/deck-review-rubric.md) - downstream deck review rubric
+- [.claude-plugin/](.claude-plugin) - Claude install entry
+- [.codex-plugin/](.codex-plugin) - Codex install entry
+- [skills/](skills) - Codex plugin discovery surface
+- [slidesmentor-skill-package/](slidesmentor-skill-package) - canonical package source
+- [slidesmentor-skill-package/skills/slidesmentor/SKILL.md](slidesmentor-skill-package/skills/slidesmentor/SKILL.md) - canonical skill definition
+- [slidesmentor-skill-package/docs/deck-review-rubric.md](slidesmentor-skill-package/docs/deck-review-rubric.md) - downstream deck review rubric
 
 ## Scope
 
@@ -209,4 +210,4 @@ SlidesMentor is usable now, but still being tuned against real NotebookLM genera
 
 ## License
 
-[MIT](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/LICENSE)
+[MIT](LICENSE)

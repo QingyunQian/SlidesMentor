@@ -212,6 +212,7 @@ output/
 
 # Internal design and planning docs
 docs/superpowers/
+preslides/
 
 # Local Claude workspace files
 .claude/

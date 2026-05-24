@@ -16,7 +16,7 @@
     "notebooklm",
     "teaching"
   ],
-  "skills": "./slidesmentor-skill-package/skills/",
+  "skills": "./skills/",
   "interface": {
     "displayName": "SlidesMentor",
     "shortDescription": "Turn papers into teachable slide artifacts",

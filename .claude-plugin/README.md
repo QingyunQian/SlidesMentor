@@ -2,6 +2,6 @@
 
 This directory is the root Claude-facing entrypoint for this repository.
 
-- [install.sh](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/.claude-plugin/install.sh) syncs the canonical skill into a Claude-compatible skills directory.
+- [install.sh](install.sh) syncs the canonical skill into a Claude-compatible skills directory.
 
-Canonical skill content still lives under [slidesmentor-skill-package/](/Users/qqy/Desktop/**2026Project**/SlidesMentor/SlidesMentor/slidesmentor-skill-package).
+Canonical skill content still lives under [slidesmentor-skill-package/](../slidesmentor-skill-package).
