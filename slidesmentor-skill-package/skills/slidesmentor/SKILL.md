@@ -19,7 +19,7 @@ Turn a research paper, and optionally its codebase, into teaching-oriented markd
 
 ## Stage 0 - Intake
 
-Ask one question at a time until `paper_source` is known and the remaining fields are either known, implied, or defaulted.
+Ask one question at a time until `paper_source` is known. Do not ask for optional fields unless the user request is ambiguous enough that a default would materially change the result.
 
 Possible fields:
 - `audience_level`
@@ -38,6 +38,12 @@ Rules:
 
 Normalization contract:
 - write `output/session-config.md` before Stage 1.
+- default missing optional fields before writing the config:
+  - `audience_level: grad-intro`
+  - `scenario: group meeting`
+  - `talk_duration_raw: 20 min`
+  - `code_source: none`
+  - `code_preference: auto-decide` when code exists; otherwise `no`
 - normalize `talk_duration_minutes` from `talk_duration_raw`; if parsing fails, use `20`.
 - normalize `target_slide_count` in this order:
   - use `slide_count_raw` if explicit and parseable;
@@ -99,11 +105,13 @@ Rules:
 
 ## Stage 4 - Produce artifacts
 
-Write these outputs under `output/`:
+Write these teaching outputs under `output/`:
 - `teaching-summary.md`
 - `slide-outline.md`
 - `notebooklm-prompt.md`
 - `lecture-script.md`
+
+Stage 5 writes the separate QC output.
 
 ### NotebookLM prompt contract
 

@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify canonical package and mirror stay in sync
+      - name: Verify package sync, installers, and metadata
         run: bash scripts/check-sync.sh

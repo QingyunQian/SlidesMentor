@@ -1,6 +1,6 @@
 # Claude Adapter
 
-This adapter syncs canonical SlidesMentor files into a Claude-style skill layout.
+This adapter syncs canonical SlidesMentor files into a Claude-style skill layout. The target skill directory is treated as generated adapter output.
 
 Canonical source:
 - `../skills/slidesmentor/SKILL.md`
@@ -12,7 +12,7 @@ Default target:
 ## Files
 
 - `adapter-manifest.md` - mapping and sync contract
-- `install.sh` - install/sync script
+- `install.sh` - install/sync script that replaces target `templates/*.md`
 
 ## Usage
 

@@ -11,6 +11,7 @@ mkdir -p "$TARGET_DIR/templates"
 cp "$CANON_SKILL" "$TARGET_DIR/SKILL.md"
 
 shopt -s nullglob
+find "$TARGET_DIR/templates" -maxdepth 1 -type f -name '*.md' -delete
 for template in "$CANON_TEMPLATES_DIR"/*.md; do
   cp "$template" "$TARGET_DIR/templates/$(basename "$template")"
 done

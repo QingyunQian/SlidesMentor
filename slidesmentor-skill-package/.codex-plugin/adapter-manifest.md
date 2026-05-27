@@ -9,7 +9,7 @@ Default target:
 
 Sync contract:
 - copy canonical `SKILL.md` to target `SKILL.md`
-- copy all canonical template files to target `templates/`
+- replace target `templates/*.md` with the canonical template files
 - keep adapter behavior minimal and content-preserving
 
 Helper scripts:

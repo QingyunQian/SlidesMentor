@@ -45,7 +45,7 @@ SlidesMentor tries to fix that before the slides are generated.
 
 ## Install
 
-Both install scripts sync the canonical package from `slidesmentor-skill-package/` into a platform-specific skill directory.
+Both install scripts sync the canonical package from `slidesmentor-skill-package/` into a platform-specific skill directory. The target skill directory is treated as generated adapter output, and target `templates/*.md` files are replaced during install.
 
 ### Claude Code
 
@@ -170,12 +170,15 @@ Intermediate artifacts:
 - `output/code-relevance-map.md` when code is available and relevant
 - `output/teaching-reframe.md`
 
-Final outputs:
+Teaching outputs:
 
 - `output/teaching-summary.md`
 - `output/slide-outline.md`
 - `output/notebooklm-prompt.md`
 - `output/lecture-script.md`
+
+QC output:
+
 - `output/qc-report.md`
 
 The intermediate files exist so you can inspect how the teaching story was derived before relying on the final prompt or outline.
